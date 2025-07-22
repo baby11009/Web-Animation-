@@ -2,6 +2,7 @@ import { createContext, useContext } from "react";
 
 const AppContext = createContext({
   size: { width: 0, height: 0 },
+  lenis: null,
 });
 
 export default AppContext;

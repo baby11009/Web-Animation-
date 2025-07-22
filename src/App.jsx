@@ -1,65 +1,24 @@
 import { useEffect, useRef, useState } from "react";
-import Lenis from "lenis";
-import {
-  StickyFooter,
-  SmoothScrollParallex,
-  BackgroundImageParallex,
-  TextParallax,
-  StickyContentAndImageHorizonSlider,
-  FixedImageWithScrollContent,
-} from "./Animation";
+
+import { Routes, Route, useLocation } from "react-router-dom";
+
+import { Navbar } from "./Components";
+import { HomePage, AboutPage } from "./Page";
 
 import ContextProvider from "./Context/ContextProvider";
+import { AnimatePresence } from "motion/react";
 function App() {
-  const [scrollYDirection, setScrollYDirection] = useState();
-  console.log(scrollYDirection);
-  const lastScrollY = useRef(0);
+  const location = useLocation();
 
-  useEffect(() => {
-    // Initialize Lenis
-    const lenis = new Lenis();
-
-    // Use requestAnimationFrame to continuously update the scroll
-    function raf(time) {
-      lenis.raf(time);
-      requestAnimationFrame(raf);
-    }
-
-    requestAnimationFrame(raf);
-
-    const handleOnScroll = () => {
-      const scrollY = window.scrollY;
-      if (scrollY > lastScrollY.current) {
-        setScrollYDirection("down");
-      } else if (scrollY < lastScrollY.current) {
-        setScrollYDirection("up");
-      }
-      lastScrollY.current = scrollY;
-    };
-
-    window.addEventListener("scroll", handleOnScroll);
-    return () => {
-      window.removeEventListener("scroll", handleOnScroll);
-    };
-  }, []);
   return (
     <ContextProvider>
-      <main
-        className={`${
-          scrollYDirection === "down" ? "scroll-down" : "scroll-up"
-        }`}
-      >
-        {/* <div className='relative z-10 bg-background'>
-          <TextParallax />
-        </div>
-        <div className='relative z-10 bg-background'>
-          <StickyContentAndImageHorizonSlider />
-        </div>
-        <FixedImageWithScrollContent /> */}
-        <BackgroundImageParallex />
-        <SmoothScrollParallex />
-        <StickyFooter />
-      </main>
+      <Navbar />
+      <AnimatePresence mode='wait'>
+        <Routes location={location} key={location.pathname}>
+          <Route path='/' element={<HomePage />} />
+          <Route path='/about' element={<AboutPage />} />
+        </Routes>
+      </AnimatePresence>
     </ContextProvider>
   );
 }
