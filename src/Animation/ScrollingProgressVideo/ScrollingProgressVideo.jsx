@@ -6,38 +6,38 @@ const ScrollingProgressVideo = () => {
   const videoRef = useRef();
 
   // using framer-motion
-  //   const { scrollYProgress } = useScroll({
-  //     target: container,
-  //     offset: ["start start", "end end"],
-  //   });
-  //   useMotionValueEvent(scrollYProgress, "change", (latest) => {
-  //     if (videoRef.current) {
-  //       videoRef.current.currentTime = videoRef.current.duration * latest || 0;
-  //     }
-  //   });
+  const { scrollYProgress } = useScroll({
+    target: container,
+    offset: ["start start", "end end"],
+  });
+  useMotionValueEvent(scrollYProgress, "change", (latest) => {
+    if (videoRef.current) {
+      videoRef.current.currentTime = videoRef.current.duration * latest || 0;
+    }
+  });
 
   //   using native javascript and DOM controll
-  useEffect(() => {
-    const handleScroll = (e) => {
-      const contEl = container.current;
-      const vidEl = videoRef.current;
-      if (contEl && vidEl) {
-        const progress = Math.max(
-          0,
-          Math.min(
-            1,
-            (window.scrollY - contEl.offsetTop) /
-              (contEl.offsetHeight - window.innerHeight),
-          ),
-        );
-        vidEl.currentTime = vidEl.duration * progress;
-      }
-    };
-    window.addEventListener("scroll", handleScroll);
-    return () => {
-      window.removeEventListener("scroll", handleScroll);
-    };
-  }, []);
+  // useEffect(() => {
+  //   const handleScroll = (e) => {
+  //     const contEl = container.current;
+  //     const vidEl = videoRef.current;
+  //     if (contEl && vidEl) {
+  //       const progress = Math.max(
+  //         0,
+  //         Math.min(
+  //           1,
+  //           (window.scrollY - contEl.offsetTop) /
+  //             (contEl.offsetHeight - window.innerHeight),
+  //         ),
+  //       );
+  //       vidEl.currentTime = vidEl.duration * progress || 0;
+  //     }
+  //   };
+  //   window.addEventListener("scroll", handleScroll);
+  //   return () => {
+  //     window.removeEventListener("scroll", handleScroll);
+  //   };
+  // }, []);
 
   return (
     <div className='h-[300vh]' ref={container}>

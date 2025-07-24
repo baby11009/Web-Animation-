@@ -1,25 +1,30 @@
 import { useEffect, useRef } from "react";
-import { H, E, L, O } from "../../Icon";
+import { H, E, L, O, D, A, N } from "../../Icon";
 
 const iconMap = {
   h: <H />,
   e: <E />,
   l: <L />,
   o: <O />,
+  d: <D />,
+  a: <A />,
+  n: <N />,
 };
 
 const TextSvg = () => {
-  const word = "HELL";
+  const word = "LON DA DEN";
 
   const element = useRef();
 
   useEffect(() => {
     const observer = new IntersectionObserver(
       (entries) => {
-        if (entries[0].isIntersecting) {
-          element.current.classList.add("screen-container");
-        } else {
-          element.current.classList.remove("screen-container");
+        if (element.current) {
+          if (entries[0].isIntersecting) {
+            element.current.classList.add("screen-container");
+          } else {
+            element.current.classList.remove("screen-container");
+          }
         }
       },
       {

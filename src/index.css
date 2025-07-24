@@ -138,14 +138,14 @@ body {
   fill: transparent;
   stroke-width: 1;
   stroke: #fff;
-  stroke-dasharray: 340;
-  stroke-dashoffset: 340;
+  stroke-dasharray: 400;
+  stroke-dashoffset: 400;
   animation: textAnimate 4s var(--delay) ease-in-out 1 forwards;
 }
 
 @keyframes textAnimate {
   0% {
-    stroke-dashoffset: 340;
+    stroke-dashoffset: 400;
   }
   80% {
     fill: transparent;
