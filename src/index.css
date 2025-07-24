@@ -155,3 +155,53 @@ body {
     stroke-dashoffset: 0;
   }
 }
+
+.grid-template-columns {
+  --min-width: 200px;
+  --max-width: 1fr;
+  grid-template-columns: repeat(
+    auto-fit,
+    minmax(var(--min-width), var(--max-width))
+  );
+}
+
+.clipped-text {
+  --linear: to right, #ff0080, #7928ca;
+  background: linear-gradient(var(--linear));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.hover-clipPath {
+  position: relative;
+  z-index: 2;
+  clip-path: inset(0% 0% 0% 100%);
+  transition: clip-path 0.3s ease-in-out;
+}
+
+.clipContainer:hover .hover-clipPath {
+  clip-path: inset(0% 0% 0% 0%);
+}
+
+/* .float-container:hover .float{
+  --float-x: 0px;
+  --float-y: 0px;
+} */
+
+.float {
+  --float-x: 20px;
+  --float-y: 10px;
+  animation: float 3s ease-in-out infinite;
+}
+
+@keyframes float {
+  0% {
+    transform: translate(0, 0);
+  }
+  50% {
+    transform: translate(var(--float-x), var(--float-y));
+  }
+  100% {
+    transform: translate(0, 0);
+  }
+}

@@ -9,6 +9,10 @@ const routes = [
     path: "/about",
     label: "About",
   },
+  {
+    path: "/components",
+    label: "Components",
+  },
 ];
 
 const Navbar = () => {
