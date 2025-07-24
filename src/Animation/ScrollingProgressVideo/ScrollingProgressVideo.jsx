@@ -10,6 +10,7 @@ const ScrollingProgressVideo = () => {
     target: container,
     offset: ["start start", "end end"],
   });
+
   useMotionValueEvent(scrollYProgress, "change", (latest) => {
     if (videoRef.current) {
       videoRef.current.currentTime = videoRef.current.duration * latest || 0;
@@ -40,7 +41,7 @@ const ScrollingProgressVideo = () => {
   // }, []);
 
   return (
-    <div className='h-[300vh]' ref={container}>
+    <div className='h-[350vh]' ref={container}>
       <div className='h-screen overflow-hidden sticky top-0'>
         <video className='w-full h-full object-cover' ref={videoRef}>
           <source src='/videos/2-1.mov' />

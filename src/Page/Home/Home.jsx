@@ -3,6 +3,7 @@ import {
   ExpandingButton,
   StackCardScroll,
   ScrollingProgressVideo,
+  MorphingGradients,
 } from "../../Animation";
 
 import { ScreenTransition } from "../../Components";
@@ -10,7 +11,9 @@ import { ScreenTransition } from "../../Components";
 const Home = () => {
   return (
     <div>
-      <TextSvg />
+      <MorphingGradients>
+        <TextSvg />
+      </MorphingGradients>
       <ScrollingProgressVideo />
       {/* <StackCardScroll>
         <TextSvg />
